@@ -67,7 +67,7 @@ Then /I should see the following ratings: (.*)/ do |rating_list|
     has_ratings = has_ratings && ratings.include?(element.text)
   end
 
-  assert has_ratings
+  assert has_ratings, "Count doesn't match or invalid rating"
 
 end
 
@@ -88,7 +88,7 @@ Then /I should not see the following ratings: (.*)/ do |rating_list|
     has_ratings = has_ratings && ratings.include?(element.text)
   end
 
-  assert has_ratings == false
+  assert has_ratings == false, "Rating appeared that should not appear"
 
 end
 
@@ -98,7 +98,7 @@ Then /I should see all of the movies/ do
   movie_count = Movie.all.count
   row_count = page.all("tbody#movielist tr").count
   
-  assert movie_count == row_count
+  assert movie_count == row_count, "All of the movies not appearing"
 
 end
 
@@ -107,6 +107,6 @@ Then /I should see none of the movies/ do
   # table should have the same number of rows
   row_count = page.all("tbody#movielist tr").count
   
-  assert row_count == 0
+  assert row_count == 0, "Some movies are appearing"
 
 end
