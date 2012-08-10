@@ -22,10 +22,14 @@ Background: movies have been added to database
   And  I am on the RottenPotatoes home page
   
 Scenario: restrict to movies with 'PG' or 'R' ratings
-  Given I check the following ratings: PG, R
-  Given I uncheck the following ratings: G, PG-13, NC-17
+  Given I check the following ratings: R, PG
+  Given I uncheck the following ratings: NC-17, G, PG-13
   When I press "ratings_submit"
-  Then I should see the following ratings: PG, R
+#  Then I should see "The Incredibles"
+#  And I should see "Amelie"
+#  Then I should not see "Aladdin"
+#  And I should not see "Chocolat"
+  Then I should see the following ratings: R, PG
   And I should not see the following ratings: G, PG-13, NC-17
   
 Scenario: no ratings selected
